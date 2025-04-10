@@ -15,8 +15,9 @@ out vec4 fragColor;
 void main() {
     fragColor = vec4(1,0,0,1);
     fragColor = interpColor;
-    if (useTexture != 0) {
-        fragColor *= texture(surfaceTexture, interpTexCoords);
+    fragColor = interpColor;
+    if (useTexture != 0 && dot(interpTexCoords,interpTexCoords) > 0.5) {
+        fragColor = interpColor * texture(surfaceTexture, interpTexCoords) + vec4(0.2);
     }
 
 }
